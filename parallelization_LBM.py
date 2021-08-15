@@ -388,10 +388,10 @@ def main(argv) -> None:
         rho, vel = collision(f)
 
     save_mpiio(
-        comm, "{}_ux_{}X{}_{}.npy".format(size,Nx,Ny,del_t), vel[0, without_ghosts_x, without_ghosts_y]
+        comm, "ux_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[0, without_ghosts_x, without_ghosts_y]
     )
     save_mpiio(
-        comm, "{}_uy_{}X{}_{}.npy".format(size,Nx,Ny,del_t), vel[1, without_ghosts_x, without_ghosts_y]
+        comm, "uy_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[1, without_ghosts_x, without_ghosts_y]
     )
     # measure how long it took to run
     time_took = time.time() - start
