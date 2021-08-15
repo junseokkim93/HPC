@@ -397,21 +397,11 @@ def main(argv) -> None:
     time_took = time.time() - start
     # calculate MLUPS(million lattice update per second)
     MLUPS = t * local_Nx * local_Ny / time_took / 1e6
-    print("With {} MPI processes, MLUPS: {}".format(size, MLUPS))
+    
+    if rank==0: print("\nWith {} MPI processors,{}X{} grid, MLUPS: {}\n".format(size,Nx,Ny, MLUPS))
     
     
-    # creates a file where we save MLUPS
-    filename ="MLUPS_{}.txt".format(size)
-
-    if os.path.exists(filename):
-        append_write = 'a' # append if already exists
-    else:
-        append_write = 'w' # make a new file if not
-
-    file = open(filename,append_write)
-    file.write("MLUPS: {}".format(MLUPS))
-    file.close()
-
+    
 
 if __name__ == "__main__":
     app.run(main)
