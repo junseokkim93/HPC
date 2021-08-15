@@ -21,8 +21,8 @@ flags.DEFINE_integer("Ndx", None, "Integer value Ndx from Ndy x Ndx decompositio
 flags.DEFINE_integer("Ndy", None, "Integer value Ndy from Ndy x Ndx decomposition grid")
 # omega's default value is set to 1.7
 flags.DEFINE_float("omega", 1.7, "The value for omega")
-# t's default value is set to 1e5
-flags.DEFINE_integer("Ndy", 1e5, "Integer value for the timestep")
+# t's default value is set to 100000
+flags.DEFINE_integer("t", 100000, "Integer value for the timestep")
 # required flags
 flags.mark_flag_as_required("Nx")
 flags.mark_flag_as_required("Ny")
