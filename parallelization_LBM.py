@@ -401,7 +401,7 @@ def main(argv) -> None:
 #         save_mpiio(
 #             comm, "uy_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[1, 1:-1, 1:-1]
 #         )
-   elif mpiy==0:
+    elif mpiy==0:
         save_mpiio(
             comm, "ux_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[0, 1:-1, 0:-1]
         )
