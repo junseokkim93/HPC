@@ -4,6 +4,7 @@
 import math
 import time
 import sys
+import json
 from typing import List, Tuple
 
 # Third party
@@ -397,6 +398,22 @@ def main(argv) -> None:
     # calculate MLUPS(million lattice update per second)
     MLUPS = t * local_Nx * local_Ny / time_took / 1e6
     print("With {} MPI processes, MLUPS: {}".format(size, MLUPS))
+    
+    # creates an empty dictionary for saving MLUPS values
+    MLUPS_dic = {}
+    # add the size and MLUPS value to the dictionary
+    MLUPS_dic[size]=MLUPS
+    
+    filename ="MLUPS.txt"
+
+    if os.path.exists(filename):
+        append_write = 'a' # append if already exists
+    else:
+        append_write = 'w' # make a new file if not
+
+    file = open(filename,append_write)
+    file.write(json.dumps(MLUPS_dic))
+    file.close()
 
 
 if __name__ == "__main__":
