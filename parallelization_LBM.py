@@ -387,14 +387,34 @@ def main(argv) -> None:
             f, bounce_back_list=bounce_back_list, u_w=u_w, corner=True
         )
         rho, vel = collision(f)
-
-    save_mpiio(
-        comm, "ux_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[0, 1:-1, 1:-1]
-    )
-    save_mpiio(
-        comm, "uy_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[1, 1:-1, 1:-1]
-    )
-    
+    if mpix==0:
+        save_mpiio(
+            comm, "ux_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[0, 0:-1, 1:-1]
+        )
+        save_mpiio(
+            comm, "uy_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[1, 0:-1, 1:-1]
+        )
+#     elif mpix==-1:
+#         save_mpiio(
+#             comm, "ux_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[0, 1:-1, 1:-1]
+#         )
+#         save_mpiio(
+#             comm, "uy_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[1, 1:-1, 1:-1]
+#         )
+   elif mpiy==0:
+        save_mpiio(
+            comm, "ux_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[0, 1:-1, 0:-1]
+        )
+        save_mpiio(
+            comm, "uy_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[1, 1:-1, 0:-1]
+        )
+#     elif mpix==0:
+#         save_mpiio(
+#             comm, "ux_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[0, 1:-1, 1:-1]
+#         )
+#         save_mpiio(
+#             comm, "uy_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[1, 1:-1, 1:-1]
+#         )
     # measure how long it took to run
     time_took = time.time() - start
     # calculate MLUPS(million lattice update per second)
