@@ -399,12 +399,9 @@ def main(argv) -> None:
     MLUPS = t * local_Nx * local_Ny / time_took / 1e6
     print("With {} MPI processes, MLUPS: {}".format(size, MLUPS))
     
-    # creates an empty dictionary for saving MLUPS values
-    MLUPS_dic = {}
-    # add the size and MLUPS value to the dictionary
-    MLUPS_dic[size]=MLUPS
     
-    filename ="MLUPS.txt"
+    # creates a file where we save MLUPS
+    filename ="MLUPS_{}.txt".format(size)
 
     if os.path.exists(filename):
         append_write = 'a' # append if already exists
@@ -412,7 +409,7 @@ def main(argv) -> None:
         append_write = 'w' # make a new file if not
 
     file = open(filename,append_write)
-    file.write(json.dumps(MLUPS_dic))
+    file.write("MLUPS: {}".format(MLUPS))
     file.close()
 
 
