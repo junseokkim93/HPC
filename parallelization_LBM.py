@@ -4,7 +4,6 @@
 import math
 import time
 import sys
-import json
 from typing import List, Tuple
 
 # Third party
@@ -390,11 +389,12 @@ def main(argv) -> None:
         rho, vel = collision(f)
 
     save_mpiio(
-        comm, "ux_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[0, without_ghosts_x, without_ghosts_y]
+        comm, "ux_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[0, 1:-1, 1:-1]
     )
     save_mpiio(
-        comm, "uy_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[1, without_ghosts_x, without_ghosts_y]
+        comm, "uy_{}X{}_{}.npy".format(Nx,Ny,del_t), vel[1, 1:-1, 1:-1]
     )
+    
     # measure how long it took to run
     time_took = time.time() - start
     # calculate MLUPS(million lattice update per second)
