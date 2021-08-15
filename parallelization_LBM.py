@@ -396,7 +396,7 @@ def main(argv) -> None:
     # measure how long it took to run
     time_took = time.time() - start
     # calculate MLUPS(million lattice update per second)
-    MLUPS = t * local_Nx * local_Ny / time_took / 1e6
+    MLUPS = t * Nx * Ny / time_took / 1e6
     
     if rank==0: print("\nWith {} MPI processors,{}X{} grid, MLUPS: {}\n".format(size,Nx,Ny, MLUPS))
     
