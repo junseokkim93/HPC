@@ -8,7 +8,6 @@ from typing import List, Tuple
 
 # Third party
 import numpy as np
-import matplotlib.pyplot as plt
 from mpi4py import MPI
 from absl import flags
 from absl import app
@@ -374,8 +373,6 @@ def main(argv) -> None:
         np.ones((local_Nx, local_Ny), dtype=np.float64),
         np.zeros((2, local_Nx, local_Ny), dtype=np.float64),
     )
-
-    plt.ioff()
 
     # main loop
     start = time.time()
