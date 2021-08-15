@@ -394,7 +394,7 @@ def main(argv) -> None:
         comm, "{}_uy_{}.npy".format(size,del_t), vel[1, without_ghosts_x, without_ghosts_y]
     )
     # measure how long it took to run
-    time_took = start - time.time()
+    time_took = time.time() - start
     # calculate MLUPS(million lattice update per second)
     MLUPS = t * local_Nx * local_Ny / time_took / 1e6
     print("With {} MPI processes, MLUPS: {}".format(size, MLUPS))
